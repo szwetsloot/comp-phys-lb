@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8821D4301CC95C5900E6473F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8821D42F1CC95C5900E6473F /* main.cpp */; };
+		8821D4381CC95C8200E6473F /* cnpy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8821D4361CC95C8200E6473F /* cnpy.cpp */; };
+		887CAE2D1CCAAE1D00BC6528 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 887CAE2C1CCAAE1D00BC6528 /* libz.1.2.5.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,9 @@
 /* Begin PBXFileReference section */
 		8821D42C1CC95C5900E6473F /* comp-phys-lb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "comp-phys-lb"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8821D42F1CC95C5900E6473F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		8821D4361CC95C8200E6473F /* cnpy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cnpy.cpp; sourceTree = "<group>"; };
+		8821D4371CC95C8200E6473F /* cnpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cnpy.h; sourceTree = "<group>"; };
+		887CAE2C1CCAAE1D00BC6528 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				887CAE2D1CCAAE1D00BC6528 /* libz.1.2.5.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +47,7 @@
 		8821D4231CC95C5900E6473F = {
 			isa = PBXGroup;
 			children = (
+				887CAE2C1CCAAE1D00BC6528 /* libz.1.2.5.tbd */,
 				8821D42E1CC95C5900E6473F /* comp-phys-lb */,
 				8821D42D1CC95C5900E6473F /* Products */,
 			);
@@ -57,6 +64,8 @@
 		8821D42E1CC95C5900E6473F /* comp-phys-lb */ = {
 			isa = PBXGroup;
 			children = (
+				8821D4361CC95C8200E6473F /* cnpy.cpp */,
+				8821D4371CC95C8200E6473F /* cnpy.h */,
 				8821D42F1CC95C5900E6473F /* main.cpp */,
 			);
 			path = "comp-phys-lb";
@@ -119,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8821D4301CC95C5900E6473F /* main.cpp in Sources */,
+				8821D4381CC95C8200E6473F /* cnpy.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +219,8 @@
 		8821D4341CC95C5900E6473F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_UNROLL_LOOPS = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -216,6 +228,9 @@
 		8821D4351CC95C5900E6473F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_UNROLL_LOOPS = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -239,6 +254,7 @@
 				8821D4351CC95C5900E6473F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
