@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8821D4301CC95C5900E6473F /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8821D42F1CC95C5900E6473F /* main.cpp */; };
-		8821D4381CC95C8200E6473F /* cnpy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8821D4361CC95C8200E6473F /* cnpy.cpp */; };
-		887CAE2D1CCAAE1D00BC6528 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 887CAE2C1CCAAE1D00BC6528 /* libz.1.2.5.tbd */; };
+		88750B061CCBD11C0022AE18 /* cnpy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 88750B031CCBD11C0022AE18 /* cnpy.cpp */; };
+		88750B071CCBD11C0022AE18 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 88750B051CCBD11C0022AE18 /* main.cpp */; };
+		88750B081CCBD1520022AE18 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88750AF41CCBCF670022AE18 /* libz.1.2.5.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		8821D42A1CC95C5900E6473F /* CopyFiles */ = {
+		88750AFA1CCBD0990022AE18 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -25,117 +25,117 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8821D42C1CC95C5900E6473F /* comp-phys-lb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "comp-phys-lb"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8821D42F1CC95C5900E6473F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		8821D4361CC95C8200E6473F /* cnpy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cnpy.cpp; sourceTree = "<group>"; };
-		8821D4371CC95C8200E6473F /* cnpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cnpy.h; sourceTree = "<group>"; };
-		887CAE2C1CCAAE1D00BC6528 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		88750AF41CCBCF670022AE18 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		88750AFC1CCBD0990022AE18 /* comp-phys-lb-worker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "comp-phys-lb-worker"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88750B031CCBD11C0022AE18 /* cnpy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cnpy.cpp; sourceTree = "<group>"; };
+		88750B041CCBD11C0022AE18 /* cnpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cnpy.h; sourceTree = "<group>"; };
+		88750B051CCBD11C0022AE18 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8821D4291CC95C5900E6473F /* Frameworks */ = {
+		88750AF91CCBD0990022AE18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				887CAE2D1CCAAE1D00BC6528 /* libz.1.2.5.tbd in Frameworks */,
+				88750B081CCBD1520022AE18 /* libz.1.2.5.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8821D4231CC95C5900E6473F = {
+		88750ADC1CCBCF060022AE18 = {
 			isa = PBXGroup;
 			children = (
-				887CAE2C1CCAAE1D00BC6528 /* libz.1.2.5.tbd */,
-				8821D42E1CC95C5900E6473F /* comp-phys-lb */,
-				8821D42D1CC95C5900E6473F /* Products */,
+				88750AF41CCBCF670022AE18 /* libz.1.2.5.tbd */,
+				88750AFD1CCBD0990022AE18 /* comp-phys-lb-worker */,
+				88750AE61CCBCF060022AE18 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8821D42D1CC95C5900E6473F /* Products */ = {
+		88750AE61CCBCF060022AE18 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8821D42C1CC95C5900E6473F /* comp-phys-lb */,
+				88750AFC1CCBD0990022AE18 /* comp-phys-lb-worker */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8821D42E1CC95C5900E6473F /* comp-phys-lb */ = {
+		88750AFD1CCBD0990022AE18 /* comp-phys-lb-worker */ = {
 			isa = PBXGroup;
 			children = (
-				8821D4361CC95C8200E6473F /* cnpy.cpp */,
-				8821D4371CC95C8200E6473F /* cnpy.h */,
-				8821D42F1CC95C5900E6473F /* main.cpp */,
+				88750B031CCBD11C0022AE18 /* cnpy.cpp */,
+				88750B041CCBD11C0022AE18 /* cnpy.h */,
+				88750B051CCBD11C0022AE18 /* main.cpp */,
 			);
-			path = "comp-phys-lb";
+			path = "comp-phys-lb-worker";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8821D42B1CC95C5900E6473F /* comp-phys-lb */ = {
+		88750AFB1CCBD0990022AE18 /* comp-phys-lb-worker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8821D4331CC95C5900E6473F /* Build configuration list for PBXNativeTarget "comp-phys-lb" */;
+			buildConfigurationList = 88750B001CCBD0990022AE18 /* Build configuration list for PBXNativeTarget "comp-phys-lb-worker" */;
 			buildPhases = (
-				8821D4281CC95C5900E6473F /* Sources */,
-				8821D4291CC95C5900E6473F /* Frameworks */,
-				8821D42A1CC95C5900E6473F /* CopyFiles */,
+				88750AF81CCBD0990022AE18 /* Sources */,
+				88750AF91CCBD0990022AE18 /* Frameworks */,
+				88750AFA1CCBD0990022AE18 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "comp-phys-lb";
-			productName = "comp-phys-lb";
-			productReference = 8821D42C1CC95C5900E6473F /* comp-phys-lb */;
+			name = "comp-phys-lb-worker";
+			productName = "comp-phys-lb-worker";
+			productReference = 88750AFC1CCBD0990022AE18 /* comp-phys-lb-worker */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8821D4241CC95C5900E6473F /* Project object */ = {
+		88750ADD1CCBCF060022AE18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Jesse Slim";
 				TargetAttributes = {
-					8821D42B1CC95C5900E6473F = {
+					88750AFB1CCBD0990022AE18 = {
 						CreatedOnToolsVersion = 7.3;
 					};
 				};
 			};
-			buildConfigurationList = 8821D4271CC95C5900E6473F /* Build configuration list for PBXProject "comp-phys-lb" */;
+			buildConfigurationList = 88750AE01CCBCF060022AE18 /* Build configuration list for PBXProject "comp-phys-lb" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 8821D4231CC95C5900E6473F;
-			productRefGroup = 8821D42D1CC95C5900E6473F /* Products */;
+			mainGroup = 88750ADC1CCBCF060022AE18;
+			productRefGroup = 88750AE61CCBCF060022AE18 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8821D42B1CC95C5900E6473F /* comp-phys-lb */,
+				88750AFB1CCBD0990022AE18 /* comp-phys-lb-worker */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8821D4281CC95C5900E6473F /* Sources */ = {
+		88750AF81CCBD0990022AE18 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8821D4301CC95C5900E6473F /* main.cpp in Sources */,
-				8821D4381CC95C8200E6473F /* cnpy.cpp in Sources */,
+				88750B061CCBD11C0022AE18 /* cnpy.cpp in Sources */,
+				88750B071CCBD11C0022AE18 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		8821D4311CC95C5900E6473F /* Debug */ = {
+		88750AEA1CCBCF060022AE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -179,7 +179,7 @@
 			};
 			name = Debug;
 		};
-		8821D4321CC95C5900E6473F /* Release */ = {
+		88750AEB1CCBCF060022AE18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -216,21 +216,20 @@
 			};
 			name = Release;
 		};
-		8821D4341CC95C5900E6473F /* Debug */ = {
+		88750B011CCBD0990022AE18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_UNROLL_LOOPS = YES;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		8821D4351CC95C5900E6473F /* Release */ = {
+		88750B021CCBD0990022AE18 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_UNROLL_LOOPS = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -238,25 +237,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8821D4271CC95C5900E6473F /* Build configuration list for PBXProject "comp-phys-lb" */ = {
+		88750AE01CCBCF060022AE18 /* Build configuration list for PBXProject "comp-phys-lb" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8821D4311CC95C5900E6473F /* Debug */,
-				8821D4321CC95C5900E6473F /* Release */,
+				88750AEA1CCBCF060022AE18 /* Debug */,
+				88750AEB1CCBCF060022AE18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8821D4331CC95C5900E6473F /* Build configuration list for PBXNativeTarget "comp-phys-lb" */ = {
+		88750B001CCBD0990022AE18 /* Build configuration list for PBXNativeTarget "comp-phys-lb-worker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8821D4341CC95C5900E6473F /* Debug */,
-				8821D4351CC95C5900E6473F /* Release */,
+				88750B011CCBD0990022AE18 /* Debug */,
+				88750B021CCBD0990022AE18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 8821D4241CC95C5900E6473F /* Project object */;
+	rootObject = 88750ADD1CCBCF060022AE18 /* Project object */;
 }
