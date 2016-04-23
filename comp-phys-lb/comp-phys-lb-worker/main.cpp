@@ -273,40 +273,9 @@ void do_simulation(bool report = true) {
     streaming_threads = new std::thread*[num_threads];
     
     for_time_t {
-        // calculation of quantities over the grid + collision step
-        for_threads_n {
-            long start = n * (N / num_threads);
-            long end;
-            if (n + 1 == num_threads)
-                end = N;
-            else
-                end = (n+1) * (N / num_threads);
-            
-            collision_threads[n] = new std::thread(collision_loop, start, end);
-        }
         
-        for_threads_n {
-            collision_threads[n]->join();
-            delete collision_threads[n];
-        }
-        
-        // streaming step
-        for_threads_n {
-            long start = n * (N / num_threads);
-            long end;
-            if (n + 1 == num_threads)
-                end = N;
-            else
-                end = (n+1) * (N / num_threads);
-            
-            streaming_threads[n] = new std::thread(streaming_loop, start, end);
-        }
-        
-        for_threads_n {
-            streaming_threads[n]->join();
-            delete streaming_threads[n];
-        }
-        
+        collision_loop(0, N);
+        streaming_loop(0, N);
         
         // finish iteration
         copy_f(f_prev, f_next);
@@ -325,7 +294,7 @@ int main(int argc, const char * argv[]) {
     initialize_load_data("in.npz");
     initial_conditions();
     
-    std::cout << "Starting simulation with " << N << " grid points and " << num_iter << " iterations on " << num_threads << " threads" << std::endl;
+    std::cout << "Starting simulation with " << N << " grid points and " << num_iter << " iterations on " << 1 << " threads" << std::endl;
     
     start_time = (double) std::clock() / CLOCKS_PER_SEC;
     do_simulation();
