@@ -72,6 +72,8 @@ bool contains_nans(const double *data, unsigned int size) {
     return false;
 }
 
+
+
 void initialize_velocities() {
     double angle_diff = 2 * M_PI / double(q-1);
     for (int j = 1; j < q; j++) {
@@ -262,7 +264,7 @@ void initial_conditions() {
         std::cout << "NaNs in initial f" << std::endl;
 }
 
-void do_simulation() {
+void do_simulation(bool report = true) {
     for_time_t {
         // calculation of quantities over the grid + collision step
         for_gridpoints_i {
@@ -332,6 +334,10 @@ void do_simulation() {
         
         // finish iteration
         copy_f(f_prev, f_next);
+        
+        if (report && t % (num_iter / 10) == 0) {
+            std::cout << "Simulation progress: " << ((t * 100.0) / num_iter) << "%" << std::endl;
+        }
     }
 }
 
@@ -356,7 +362,7 @@ int main(int argc, const char * argv[]) {
     unsigned int element_shape[] = {1};
     unsigned int link_list_shape[] = {N, q};
     unsigned int lattice_id_shape[] = {N};
-    std::string outFile = "/Users/jesse/Code/comp-phys-lb/out.npz";
+    std::string outFile = "out.npz";
     
     cnpy::npz_save(outFile, "N_x", &N_x, element_shape, 1, "w");
     cnpy::npz_save(outFile, "N_y", &N_y, element_shape, 1, "a");
