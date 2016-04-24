@@ -6,6 +6,11 @@
 //  Copyright © 2016 Jesse Slim. All rights reserved.
 //
 
+//  This program performs a lattice Boltzmann simulation,
+//  controlled by a Python script
+//  The method used in this program is based on the IPython
+//  notebook LBJesseInletOutletBC
+
 #include <iostream>
 #include <cstring>
 #include <cstdlib>
