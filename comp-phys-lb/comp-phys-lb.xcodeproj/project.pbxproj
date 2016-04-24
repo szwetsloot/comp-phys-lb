@@ -30,6 +30,7 @@
 		88750B031CCBD11C0022AE18 /* cnpy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cnpy.cpp; sourceTree = "<group>"; };
 		88750B041CCBD11C0022AE18 /* cnpy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cnpy.h; sourceTree = "<group>"; };
 		88750B051CCBD11C0022AE18 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		88750B091CCC0CCD0022AE18 /* compile.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = compile.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +68,7 @@
 				88750B031CCBD11C0022AE18 /* cnpy.cpp */,
 				88750B041CCBD11C0022AE18 /* cnpy.h */,
 				88750B051CCBD11C0022AE18 /* main.cpp */,
+				88750B091CCC0CCD0022AE18 /* compile.sh */,
 			);
 			path = "comp-phys-lb-worker";
 			sourceTree = "<group>";
@@ -220,6 +222,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_UNROLL_LOOPS = YES;
+				GCC_VERSION = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -229,6 +232,7 @@
 			buildSettings = {
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_UNROLL_LOOPS = YES;
+				GCC_VERSION = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -253,6 +257,7 @@
 				88750B021CCBD0990022AE18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

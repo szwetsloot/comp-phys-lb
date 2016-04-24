@@ -7,9 +7,16 @@
 //
 
 #include <iostream>
+#include <cstring>
+#include <cstdlib>
 #include <thread>
 #include <cmath>
 #include <ctime>
+#include <chrono>
+
+#ifdef USE_OMP
+    #include <omp.h>
+#endif
 #include "cnpy.h"
 
 #define for_gridpoints_i for (long i = 0; i < N; i++)
@@ -19,7 +26,8 @@
 #define for_threads_n for (long n = 0; n < num_threads; n++)
 
 enum gridpoint_identity_t: long {
-    id_interior,
+    id_deleted = -1,
+    id_interior = 0,
     id_bc_noslip,
     id_bc_inflow,
     id_bc_outflow_dir_0,
@@ -31,10 +39,10 @@ enum gridpoint_identity_t: long {
     id_bc_outflow_dir_6,
 };
 
-long q = -1;
+const long q = 7;
 long num_iter = -1;
 long N = -1;
-long dim = 2;
+const long dim = 2;
 long num_threads = -1;
 
 double *u_inlet;
@@ -62,11 +70,11 @@ long *link_list;
 gridpoint_identity_t *lattice_identities;
 
 void *memcpy_double(double *out, void *in, size_t size) {
-    return memcpy(out, in, sizeof(double) * size);
+    return std::memcpy(out, in, sizeof(double) * size);
 }
 
 void *memcpy_long(long* out, void *in, size_t size) {
-    return memcpy(out, in, sizeof(long) * size);
+    return std::memcpy(out, in, sizeof(long) * size);
 }
 
 bool contains_nans(const double *data, size_t size) {
@@ -102,9 +110,13 @@ void initialize_load_data(std::string inFile) {
     cnpy::NpyArray num_threads_in   = cnpy::npz_load(inFile, "num_threads");
     
     N = lattice_in.shape[0];
-    q = *((long*) q_in.data);
+    // q = *((long*) q_in.data);
     num_iter = *((long*) num_iter_in.data);
     num_threads = *((long*) num_threads_in.data);
+    
+#ifdef USE_OMP
+    omp_set_num_threads(num_threads);
+#endif
     
     // time to allocate arrays
     u_inlet             = new double[N * dim]();
@@ -172,6 +184,8 @@ void calc_f_eq_single(double rhoIn, double *uIn, double *fOut){
 void calc_f_eq(double *rhoIn, double *uIn, double *fOut)
 {
     for_gridpoints_i {
+        if (lattice_identities[i] == id_deleted)
+            continue;
         calc_f_eq_single(rhoIn[i], &uIn[i * dim], &fOut[i * q]);
     }
 }
@@ -181,7 +195,7 @@ void copy_f(double *fOut, double *fIn) {
 }
 
 void clear_f(double *fOut) {
-    memset(fOut, 0, sizeof(double) * N * q);
+    std::memset(fOut, 0, sizeof(double) * N * q);
 }
 
 void initial_conditions() {
@@ -196,13 +210,22 @@ void initial_conditions() {
         std::cout << "NaNs in initial f" << std::endl;
 }
 
-void collision_loop(long start, long end) {
-    for(long i = start; i < end; i++) {
+void collision_loop() {
+#ifdef USE_OMP
+    #pragma omp parallel for
+#endif
+    for_gridpoints_i {
+        if (lattice_identities[i] == id_deleted)
+            continue;
         // apply right wall bc
         if (lattice_identities[i] >= id_bc_outflow_dir_0)
         {
-            int outflow_dir = lattice_identities[i] - id_bc_outflow_dir_0;
-            int link_gp = link_list[i * q + bb_dir[outflow_dir]];
+            long outflow_dir = lattice_identities[i] - id_bc_outflow_dir_0;
+            long link_gp = link_list[i * q + bb_dir[outflow_dir]];
+            if (link_gp == -1) {
+                std::cout << "Invalid outflow link encountered!" << std::endl;
+                exit(-1);
+            }
             for_directions_k {
                 f_prev[i * q + k] = f_prev[link_gp * q + k];
             }
@@ -224,7 +247,7 @@ void collision_loop(long start, long end) {
             rho[i] += f_prev[i * q + k];
         }
         
-        memset(&u[i * dim], 0, sizeof(double) * dim);
+        std::memset(&u[i * dim], 0, sizeof(double) * dim);
         
         if (rho[i] > 0.0 && lattice_identities[i] != id_bc_noslip) {
             for_directions_k {
@@ -253,8 +276,13 @@ void collision_loop(long start, long end) {
     }
 }
 
-void streaming_loop(long start, long end) {
-    for (long i = start; i < end; i++) {
+void streaming_loop() {
+#ifdef USE_OMP
+    #pragma omp parallel for
+#endif
+    for_gridpoints_i {
+        if (lattice_identities[i] == id_deleted)
+            continue;
         for_directions_k {
             // check if the link in this direction is valid
             long link = link_list[i * q + k];
@@ -266,16 +294,10 @@ void streaming_loop(long start, long end) {
 }
 
 void do_simulation(bool report = true) {
-    std::thread **collision_threads;
-    std::thread **streaming_threads;
-    
-    collision_threads = new std::thread*[num_threads];
-    streaming_threads = new std::thread*[num_threads];
-    
     for_time_t {
         
-        collision_loop(0, N);
-        streaming_loop(0, N);
+        collision_loop();
+        streaming_loop();
         
         // finish iteration
         copy_f(f_prev, f_next);
@@ -287,20 +309,24 @@ void do_simulation(bool report = true) {
 }
 
 int main(int argc, const char * argv[]) {
-    double start_time;
-    double finish_time;
     
     
     initialize_load_data("in.npz");
     initial_conditions();
     
-    std::cout << "Starting simulation with " << N << " grid points and " << num_iter << " iterations on " << 1 << " threads" << std::endl;
+    std::cout << "Starting simulation with " << N << " grid points and " << num_iter << " iterations";
+#ifdef USE_OMP
+    std::cout << " with OpenMP";
+#endif
+    std::cout << std::endl;
     
-    start_time = (double) std::clock() / CLOCKS_PER_SEC;
+    auto start_time = std::chrono::steady_clock::now();
     do_simulation();
-    finish_time = (double) std::clock() / CLOCKS_PER_SEC;
+    auto finish_time = std::chrono::steady_clock::now();
     
-    std::cout << "Finished in " << (finish_time - start_time) << " s" << std::endl;
+    std::chrono::duration<double> diff = finish_time - start_time;
+    
+    std::cout << "Finished in " << diff.count() << " s" << std::endl;
     
     unsigned int u_shape[] = {static_cast<unsigned int>(N), static_cast<unsigned int>(dim)};
     unsigned int rho_shape[] = {static_cast<unsigned int>(N)};
